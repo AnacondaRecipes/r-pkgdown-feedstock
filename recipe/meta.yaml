@@ -85,7 +85,7 @@ about:
 
 extra:
   recipe-maintainers:
-    - conda-forge/r
+    - ianaobi
 
 # Package: pkgdown
 # Title: Make Static HTML Documentation for a Package

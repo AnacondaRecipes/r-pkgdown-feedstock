@@ -86,6 +86,7 @@ about:
 extra:
   recipe-maintainers:
     - ianaobi
+    - bradley
 
 # Package: pkgdown
 # Title: Make Static HTML Documentation for a Package

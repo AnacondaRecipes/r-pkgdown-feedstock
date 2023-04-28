@@ -84,9 +84,12 @@ about:
     - LICENSE
 
 extra:
-  recipe-maintainers:
-    - ianaobi
-    - bradley
+  anaconda-services:
+    ref:  https://anaconda.zendesk.com/agent/tickets/35116
+    reason: "needed for r-devtools"
+    recipe-maintainers:
+      - ianaobi
+      - bkreider
 
 # Package: pkgdown
 # Title: Make Static HTML Documentation for a Package

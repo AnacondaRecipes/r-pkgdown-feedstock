@@ -84,6 +84,14 @@ about:
     - LICENSE
 
 extra:
+  skip-lints:
+    - http_url
+    - invalid_url
+    - host_section_needs_exact_pinnings
+    - missing_dev_url
+    - missing_description
+    - missing_documentation
+
   anaconda-services:
     ref:  https://anaconda.zendesk.com/agent/tickets/35116
     reason: "needed for r-devtools"

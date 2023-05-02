@@ -15,17 +15,28 @@ source:
 build:
   merge_build_host: true  # [win]
   number: 0
-  noarch: generic
+
+  # This could be noarch: but building per platform for testing
+  # noarch: generic
+
+  # Only building r packages for win64, linux64, osx64
+  skip: True # [aarch64 or s390x or ppc64le or arm64]
+
   rpaths:
     - lib/R/lib/
     - lib/
+
+  # weird error on windows
+  missing_dso_whitelist:
+    - $RPATH/R.dll  # [win]
+
 
 requirements:
   build:
     - {{ posix }}zip               # [win]
     - cross-r-base {{ r_base }}    # [build_platform != target_platform]
   host:
-    - r-base
+    - r-base {{ r_version }}
     - r-bslib
     - r-callr >=2.0.2
     - r-crayon
@@ -47,7 +58,7 @@ requirements:
     - r-xml2 >=1.3.1
     - r-yaml
   run:
-    - r-base
+    - r-base {{ r_version }}
     - r-bslib
     - r-callr >=2.0.2
     - r-crayon
@@ -84,8 +95,20 @@ about:
     - LICENSE
 
 extra:
-  recipe-maintainers:
-    - conda-forge/r
+  skip-lints:
+    - http_url
+    - invalid_url
+    - host_section_needs_exact_pinnings
+    - missing_dev_url
+    - missing_description
+    - missing_documentation
+
+  anaconda-services:
+    ref:  https://anaconda.zendesk.com/agent/tickets/35116
+    reason: "needed for r-devtools"
+    recipe-maintainers:
+      - ianaobi
+      - bkreider
 
 # Package: pkgdown
 # Title: Make Static HTML Documentation for a Package
